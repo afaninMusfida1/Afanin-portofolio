@@ -19,7 +19,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    align-items: center; /* Center main content horizontally */
+    align-items: center;
   }
 
   /* Header / Navbar */
@@ -32,6 +32,8 @@
     padding: 1rem 2rem;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;
+    z-index: 10;
   }
 
   .header-left {
@@ -79,49 +81,68 @@
     color: #f5eedc;
   }
 
-  /* Layout utama: 3 kolom */
-  main {
-    flex: 1;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: flex-start;
-    padding: 2rem;
-    gap: 2rem;
-    flex-wrap: wrap;
-    max-width: 1200px; /* limit width */
-    width: 100%;
-  }
-
-  /* Kiri: ID Card + Flip Card */
-  .profile-card-column {
+  /* ID Card gantung */
+  .idcard-hanging {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    width: 240px;
+    align-items: center;
+    margin-top: -15px;
+    animation: swing 3s infinite ease-in-out;
+    cursor: pointer;
   }
 
-  /* ID Card */
-  .idcard-container {
-    width: 100%;
+  .lanyard {
+    width: 4px;
+    height: 50px;
+    background: #183b4e;
+  }
+
+  .idcard-flip {
+    width: 200px;
+    height: 280px;
     perspective: 1000px;
   }
 
-  .idcard {
+  .idcard-inner {
     width: 100%;
-    height: 300px;
+    height: 100%;
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .idcard-flip.is-flipped .idcard-inner {
+    transform: rotateY(180deg);
+  }
+
+  .idcard-front,
+  .idcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     border-radius: 12px;
-    background: linear-gradient(160deg, #27548a, #183b4e);
     box-shadow: 6px 6px 0 #dda853;
-    border: 3px solid #dda853;
+    border: 3px solid #183b4e;
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform-origin: top center;
-    animation: swingCard 2s infinite ease-in-out;
+    padding: 1rem;
   }
 
-  .idcard img {
+  .idcard-front {
+    background: linear-gradient(160deg, #27548a, #183b4e);
+    color: #f5eedc;
+  }
+
+  .idcard-back {
+    background: #dda853;
+    color: #183b4e;
+    transform: rotateY(180deg);
+  }
+
+  .idcard-front img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -129,15 +150,41 @@
     margin-bottom: 1rem;
   }
 
-  .idcard h2 {
+  .idcard-front h2 {
     color: #dda853;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
   }
 
-  .idcard p {
-    color: #f5eedc;
+  .idcard-front p {
     font-size: 0.9rem;
+  }
+
+  @keyframes swing {
+    0% { transform: rotate(3deg); }
+    50% { transform: rotate(-3deg); }
+    100% { transform: rotate(3deg); }
+  }
+
+  /* Layout utama */
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .profile-card-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 240px;
+    margin-top: 100px; /* supaya ga ketabrak idcard gantung */
   }
 
   /* Flip Card Sosial Media */
@@ -186,26 +233,6 @@
     transform: rotateY(180deg);
   }
 
-  .card-front img,
-  .card-back img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #183b4e;
-    margin-bottom: 0.5rem;
-  }
-
-  .flip-hint {
-    font-size: 0.7rem;
-    margin-top: 0px;
-    margin-bottom: 2px;
-    opacity: 0.7;
-  }
-
-  .card-back h3 {
-    padding-top: 2px;
-    padding-bottom: 5px;
-  }
   .skill-list {
     list-style: none;
     text-align: left;
@@ -221,6 +248,11 @@
   .skill-list li a {
      color: #183b4e;
      text-decoration: none;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     max-width: 100%;
+     display: inline-block;
   }
 
   .skill-list li::before {
@@ -234,7 +266,7 @@
     top: 5px;
   }
 
-  /* Tengah: Konten utama */
+  /* Tengah */
   .main-content {
     flex: 1;
     display: flex;
@@ -290,7 +322,7 @@
     color: #dda853;
   }
 
-  /* Kanan: Section memanjang */
+  /* Kanan */
   .right-section {
     width: 220px;
     display: flex;
@@ -311,11 +343,14 @@
     margin-bottom: 0.8rem;
   }
 
-  /* Animasi */
-  @keyframes swingCard {
-    0% { transform: rotate(2deg); }
-    50% { transform: rotate(-2deg); }
-    100% { transform: rotate(2deg); }
+  /* Animasi blink */
+  @keyframes blinkEffect {
+    0% { box-shadow: 0 0 0px 0px yellow; }
+    50% { box-shadow: 0 0 20px 5px yellow; }
+    100% { box-shadow: 0 0 0px 0px yellow; }
+  }
+  .blink {
+    animation: blinkEffect 0.8s ease-in-out 2;
   }
 
   /* Responsif */
@@ -346,29 +381,39 @@
   </div>
   <nav>
     <ul>
-      <li><a href="#"><i class="fas fa-house"></i> Home</a></li>
-      <li><a href="#"><i class="fas fa-user"></i> About</a></li>
-      <li><a href="#"><i class="fas fa-folder"></i> Projects</a></li>
-      <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li><a href="#home"><i class="fas fa-house"></i> Home</a></li>
+      <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+      <li><a href="#projects"><i class="fas fa-folder"></i> Projects</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<main>
-  <!-- Kiri: ID Card + Sosial Media Flip Card -->
-  <div class="profile-card-column">
-    <div class="idcard-container">
-      <div class="idcard">
+<!-- ID Card Gantung -->
+<div class="idcard-hanging">
+  <div class="lanyard"></div>
+  <div class="idcard-flip">
+    <div class="idcard-inner">
+      <div class="idcard-front">
         <img src="https://github.com/afaninMusfida1.png" alt="Profile" />
         <h2>Afanin Musfida</h2>
         <p>Web Developer</p>
       </div>
+      <div class="idcard-back">
+        <h3>Contact</h3>
+        <p>afaninmusfida1@gmail.com</p>
+        <p>github.com/afaninMusfida1</p>
+      </div>
     </div>
+  </div>
+</div>
 
+<main>
+  <!-- Kiri -->
+  <div class="profile-card-column">
     <div class="profile-card">
       <div class="card-inner">
         <div class="card-front">
-          <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="Github" />
           <h3>Sosial Media</h3>
           <p>Get in touch</p>
           <div class="flip-hint">(Click to flip)</div>
@@ -379,7 +424,7 @@
             <li><a href="https://github.com/afaninMusfida1" target="_blank">GitHub</a></li>
             <li><a href="https://www.linkedin.com/in/afanin-musfida-414833317" target="_blank">LinkedIn</a></li>
             <li><a href="https://www.instagram.com/afaniwn/#" target="_blank">Instagram</a></li>
-            <li><a href="afaninMusfida1" target="_blank">Email</a></li>
+            <li><a href="mailto:afaninmusfida1@gmail.com" target="_blank">Email</a></li>
           </ul>
           <div class="flip-hint">(Click to flip back)</div>
         </div>
@@ -389,24 +434,24 @@
 
   <!-- Tengah -->
   <div class="main-content">
-    <div class="window">
+    <div class="window" id="home">
       <h2>👋 Welcome</h2>
       <p>Selamat datang di halaman portofolio saya! Saya seorang Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nisi!.</p>
     </div>
-    <div class="window">
+    <div class="window" id="about">
       <h2>🧑 Tentang Saya</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, labore?</p>
     </div>
-    <div class="window">
+    <div class="window" id="projects">
       <h2>📂 Projects</h2>
       <div class="projects-grid">
         <div class="project-card">
-          <h3 Portfolio</h3>
+          <h3>Portfolio</h3>
           <p>Website pribadi bergaya dengan HTML & CSS murni.</p>
         </div>
       </div>
     </div>
-    <div class="window">
+    <div class="window" id="contact">
       <h2>📞 Contact</h2>
       <ul class="contact-list">
         <li><i class="fas fa-envelope"></i> afaninmusfida1@gmail.com</li>
@@ -416,7 +461,7 @@
     </div>
   </div>
 
-  <!-- Kanan: Section memanjang -->
+  <!-- Kanan -->
   <div class="right-section">
     <div class="right-window">
       <h3>Additional Info</h3>
@@ -427,7 +472,7 @@
       <ul class="skill-list">
         <li>UI/UX Design</li>
         <li>Figma</li>
-        <li>video Eiditing</li>
+        <li>Video Editing</li>
         <li>Problem Solving</li>
         <li>Team Collaboration</li>
       </ul>
@@ -436,9 +481,28 @@
 </main>
 
 <script>
-  // Flip card
+  // Flip card sosial media
   document.querySelectorAll(".profile-card").forEach(card => {
     card.addEventListener("click", () => card.classList.toggle("is-flipped"));
+  });
+
+  // Flip id card gantung
+  document.querySelector(".idcard-flip").addEventListener("click", function(){
+    this.classList.toggle("is-flipped");
+  });
+
+  // Scroll + Blink effect
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href").substring(1);
+      const targetSection = document.getElementById(targetId);
+
+      targetSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      targetSection.classList.add("blink");
+      setTimeout(() => targetSection.classList.remove("blink"), 1600);
+    });
   });
 </script>
 </body>
