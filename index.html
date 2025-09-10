@@ -3,86 +3,336 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Afanin Retro Portfolio</title>
+<title>Afanin Portfolio</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:"Courier New", monospace; background:#f5eedc; color:#183b4e; display:flex; flex-direction:column; min-height:100vh; }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-/* Header / Navbar */
-header {
-  display:flex; justify-content:space-between; align-items:center;
-  background:#183b4e; border-bottom:5px solid #27548a; padding:1rem 2rem; flex-wrap:wrap;
-}
-.header-left { display:flex; align-items:center; gap:15px; }
-.profile-pic { width:50px; height:50px; border-radius:50%; border:2px solid #dda853; }
-.name { font-size:1.2rem; font-weight:bold; color:#f5eedc; }
-.role { font-size:0.8rem; color:#dda853; }
-nav ul { list-style:none; display:flex; gap:1rem; }
-nav a { color:#183b4e; background:#dda853; padding:0.5rem 1rem; border-radius:6px; font-weight:bold; text-decoration:none; transition:0.2s; }
-nav a:hover { background:#27548a; color:#f5eedc; }
+  body {
+    font-family: "Courier New", monospace;
+    background: #f5eedc;
+    color: #183b4e;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center; /* Center main content horizontally */
+  }
 
-/* Layout utama: 3 kolom */
-main { flex:1; display:flex; justify-content:flex-start; align-items:flex-start; padding:2rem; gap:2rem; flex-wrap:wrap; }
+  /* Header / Navbar */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #183b4e;
+    border-bottom: 5px solid #27548a;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 
-/* Kiri: ID Card + Flip Card */
-.profile-card-column { display:flex; flex-direction:column; gap:1rem; width:240px; }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
 
-/* ID Card */
-.idcard-container { width:100%; perspective:1000px; }
-.idcard {
-  width:100%;
-  height:300px;
-  border-radius:12px;
-  background: linear-gradient(160deg, #27548a, #183b4e);
-  box-shadow: 6px 6px 0 #dda853;
-  border: 3px solid #dda853;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  transform-origin: top center;
-  animation: swingCard 2s infinite ease-in-out;
-}
-.idcard img { width:80px; height:80px; border-radius:50%; border:3px solid #dda853; margin-bottom:1rem; }
-.idcard h2 { color:#dda853; font-size:1.2rem; margin-bottom:0.5rem; }
-.idcard p { color:#f5eedc; font-size:0.9rem; }
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #dda853;
+  }
 
-/* Flip Card Sosial Media */
-.profile-card { perspective:1000px; cursor:pointer; }
-.card-inner { position:relative; width:100%; height:150px; transition: transform 0.6s; transform-style: preserve-3d; }
-.profile-card.is-flipped .card-inner { transform: rotateY(180deg); }
-.card-front, .card-back {
-  position:absolute; width:100%; height:100%; backface-visibility:hidden;
-  border-radius:12px; box-shadow:4px 4px 0 #dda853; border:2px solid #183b4e;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; padding:1rem; text-align:center;
-}
-.card-front { background:#27548a; color:#f5eedc; }
-.card-back { background:#dda853; color:#183b4e; transform:rotateY(180deg); }
-.card-front img, .card-back img { width:50px; height:50px; border-radius:50%; border:2px solid #183b4e; margin-bottom:0.5rem; }
-.flip-hint { font-size:0.7rem; margin-top:0.5rem; opacity:0.7; }
-.skill-list { list-style:none; text-align:left; padding-left:0; }
-.skill-list li { margin-bottom:0.5rem; position:relative; padding-left:15px; }
-.skill-list li::before { content:""; width:8px; height:8px; background:#183b4e; border-radius:50%; position:absolute; left:0; top:5px; }
+  .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f5eedc;
+  }
 
-/* Tengah: Konten utama */
-.main-content { flex:1; display:flex; flex-direction:column; gap:1rem; max-width:600px; }
-.window { background:#27548a; border:4px solid #183b4e; border-radius:12px; padding:1.5rem; box-shadow:5px 5px 0 #dda853; color:#f5eedc; }
-.window h2 { color:#dda853; margin-bottom:1rem; }
-.projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; }
-.project-card { background:#183b4e; padding:1rem; border-radius:10px; border:2px solid #dda853; transition: transform 0.2s; }
-.project-card:hover { transform:translateY(-5px); }
-.contact-list { list-style:none; }
-.contact-list li { margin-bottom:0.8rem; display:flex; align-items:center; gap:10px; }
-.contact-list i { color:#dda853; }
+  .role {
+    font-size: 0.8rem;
+    color: #dda853;
+  }
 
-/* Kanan: Section memanjang */
-.right-section { width:220px; display:flex; flex-direction:column; gap:1rem; }
-.right-window { background:#dda853; border:2px solid #183b4e; border-radius:12px; padding:1rem; box-shadow:4px 4px 0 #27548a; color:#183b4e; }
-.right-window h3 { margin-bottom:0.8rem; }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
 
-/* Animasi */
-@keyframes swingCard { 0% { transform: rotate(2deg); } 50% { transform: rotate(-2deg); } 100% { transform: rotate(2deg); } }
+  nav a {
+    color: #183b4e;
+    background: #dda853;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+  }
 
-/* Responsif */
-@media(max-width:1024px){ main{flex-direction:column; align-items:center;} .main-content, .right-section, .profile-card-column{width:100%;} .profile-card-column{flex-direction:row; justify-content:center; gap:1rem;} }
+  nav a:hover {
+    background: #27548a;
+    color: #f5eedc;
+  }
+
+  /* Layout utama: 3 kolom */
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px; /* limit width */
+    width: 100%;
+  }
+
+  /* Kiri: ID Card + Flip Card */
+  .profile-card-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 240px;
+  }
+
+  /* ID Card */
+  .idcard-container {
+    width: 100%;
+    perspective: 1000px;
+  }
+
+  .idcard {
+    width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    background: linear-gradient(160deg, #27548a, #183b4e);
+    box-shadow: 6px 6px 0 #dda853;
+    border: 3px solid #dda853;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform-origin: top center;
+    animation: swingCard 2s infinite ease-in-out;
+  }
+
+  .idcard img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #dda853;
+    margin-bottom: 1rem;
+  }
+
+  .idcard h2 {
+    color: #dda853;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .idcard p {
+    color: #f5eedc;
+    font-size: 0.9rem;
+  }
+
+  /* Flip Card Sosial Media */
+  .profile-card {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .profile-card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 #dda853;
+    border: 2px solid #183b4e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .card-front {
+    background: #27548a;
+    color: #f5eedc;
+  }
+
+  .card-back {
+    background: #dda853;
+    color: #183b4e;
+    transform: rotateY(180deg);
+  }
+
+  .card-front img,
+  .card-back img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #183b4e;
+    margin-bottom: 0.5rem;
+  }
+
+  .flip-hint {
+    font-size: 0.7rem;
+    margin-top: 0px;
+    margin-bottom: 2px;
+    opacity: 0.7;
+  }
+
+  .card-back h3 {
+    padding-top: 2px;
+    padding-bottom: 5px;
+  }
+  .skill-list {
+    list-style: none;
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .skill-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 15px;
+  }
+
+  .skill-list li a {
+     color: #183b4e;
+     text-decoration: none;
+  }
+
+  .skill-list li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #183b4e;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 5px;
+  }
+
+  /* Tengah: Konten utama */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+  }
+
+  .window {
+    background: #27548a;
+    border: 4px solid #183b4e;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 5px 5px 0 #dda853;
+    color: #f5eedc;
+  }
+
+  .window h2 {
+    color: #dda853;
+    margin-bottom: 1rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .project-card {
+    background: #183b4e;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #dda853;
+    transition: transform 0.2s;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .contact-list {
+    list-style: none;
+  }
+
+  .contact-list li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-list i {
+    color: #dda853;
+  }
+
+  /* Kanan: Section memanjang */
+  .right-section {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .right-window {
+    background: #dda853;
+    border: 2px solid #183b4e;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 4px 4px 0 #27548a;
+    color: #183b4e;
+  }
+
+  .right-window h3 {
+    margin-bottom: 0.8rem;
+  }
+
+  /* Animasi */
+  @keyframes swingCard {
+    0% { transform: rotate(2deg); }
+    50% { transform: rotate(-2deg); }
+    100% { transform: rotate(2deg); }
+  }
+
+  /* Responsif */
+  @media(max-width:1024px){
+    main{
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-content, .right-section, .profile-card-column{
+      width: 100%;
+    }
+    .profile-card-column{
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
 </style>
 </head>
 <body>
@@ -126,10 +376,10 @@ main { flex:1; display:flex; justify-content:flex-start; align-items:flex-start;
         <div class="card-back">
           <h3>Links</h3>
           <ul class="skill-list">
-            <li>GitHub</li>
-            <li>LinkedIn</li>
-            <li>Twitter</li>
-            <li>Email</li>
+            <li><a href="https://github.com/afaninMusfida1" target="_blank">GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/afanin-musfida-414833317" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/afaniwn/#" target="_blank">Instagram</a></li>
+            <li><a href="afaninMusfida1" target="_blank">Email</a></li>
           </ul>
           <div class="flip-hint">(Click to flip back)</div>
         </div>
@@ -141,18 +391,18 @@ main { flex:1; display:flex; justify-content:flex-start; align-items:flex-start;
   <div class="main-content">
     <div class="window">
       <h2>👋 Welcome</h2>
-      <p>Selamat datang di portofolio retro saya! Saya seorang pengembang web yang suka menggabungkan estetika klasik dengan teknologi modern.</p>
+      <p>Selamat datang di halaman portofolio saya! Saya seorang Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, nisi!.</p>
     </div>
     <div class="window">
       <h2>🧑 Tentang Saya</h2>
-      <p>Saya suka membuat website dengan nuansa retro, penuh warna, dan tetap responsif. Fokus saya adalah Laravel, React, dan desain UI yang unik.</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, labore?</p>
     </div>
     <div class="window">
       <h2>📂 Projects</h2>
       <div class="projects-grid">
         <div class="project-card">
-          <h3>Retro Portfolio</h3>
-          <p>Website pribadi bergaya retro dengan HTML & CSS murni.</p>
+          <h3 Portfolio</h3>
+          <p>Website pribadi bergaya dengan HTML & CSS murni.</p>
         </div>
       </div>
     </div>
@@ -170,13 +420,14 @@ main { flex:1; display:flex; justify-content:flex-start; align-items:flex-start;
   <div class="right-section">
     <div class="right-window">
       <h3>Additional Info</h3>
-      <p>Bisa diisi pengalaman kerja, pendidikan, sertifikasi, atau catatan lainnya. Section ini memanjang ke bawah sesuai kebutuhan.</p>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque, iure.</p>
     </div>
     <div class="right-window">
       <h3>Notes / Skills Tambahan</h3>
       <ul class="skill-list">
         <li>UI/UX Design</li>
-        <li>Photoshop / Figma</li>
+        <li>Figma</li>
+        <li>video Eiditing</li>
         <li>Problem Solving</li>
         <li>Team Collaboration</li>
       </ul>
@@ -185,10 +436,10 @@ main { flex:1; display:flex; justify-content:flex-start; align-items:flex-start;
 </main>
 
 <script>
-// Flip card
-document.querySelectorAll(".profile-card").forEach(card => {
-  card.addEventListener("click", () => card.classList.toggle("is-flipped"));
-});
+  // Flip card
+  document.querySelectorAll(".profile-card").forEach(card => {
+    card.addEventListener("click", () => card.classList.toggle("is-flipped"));
+  });
 </script>
 </body>
 </html>
