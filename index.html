@@ -64,6 +64,12 @@
     gap: 1rem;
   }
 
+  nav ul li a {
+  display: flex;              /* bikin icon + text sejajar */
+  align-items: center; 
+  margin-top: 10px;       /* vertikalnya rata tengah */
+}
+
   nav a {
     color: #183b4e;
     background: #dda853;
@@ -319,6 +325,135 @@
   .right-window h3 {
     margin-bottom: 0.8rem;
   }
+
+/* Mobile & Tablet Responsive */
+
+/* Untuk HP kecil */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .header-left {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;   /* menu jadi ke bawah */
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.7rem;
+  }
+  
+  main {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .profile-card-column {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-card-column > * {
+    width: 100%;
+  }
+
+  .main-content {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .right-section {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .window, .project-card, .right-window {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .idcard {
+    height: auto;
+    padding: 1rem;
+  }
+
+  .idcard img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .idcard h2 {
+    font-size: 1rem;
+  }
+
+  .idcard p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Untuk tablet / layar sedang */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* Kolom kiri full width */
+  .profile-card-column {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ID Card & Social Media biar center */
+  .idcard-container,
+  .profile-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .idcard {
+    height: auto;
+    padding: 1rem;
+  }
+
+  /* Flip card sosial media */
+  .profile-card .card-inner {
+    height: auto;
+    min-height: 180px;
+  }
+
+  .card-front,
+  .card-back {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  /* Section kanan turun ke bawah */
+  .right-section {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .right-window {
+    width: 100%;
+  }
+}
 
   /* Animasi */
   @keyframes swingCard {
