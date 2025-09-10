@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - Retro Website</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="browser-bar">
+          <div class="browser-controls">
+            <div class="control yellow"></div>
+            <div class="control green"></div>
+            <div class="control red"></div>
+          </div>
+          <div class="address-bar">
+            <span>www.numenportofolio.com/projects</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-btn">_</button>
+            <button class="window-btn">□</button>
+            <button class="window-btn">×</button>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <ul>
+            <li>
+              <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="about.html">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+              </a>
+            </li>
+            <li class="active">
+              <a href="projects.html">
+                <i class="fas fa-folder"></i>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Konten Projects -->
+      <main class="content">
+        <div class="window">
+          <div class="card-header">
+            <div class="browser-controls">
+              <div class="control yellow"></div>
+              <div class="control green"></div>
+              <div class="control red"></div>
+            </div>
+            <div class="card-title">Projects</div>
+            <div class="window-controls">
+              <button class="window-btn">×</button>
+            </div>
+          </div>
+
+          <div class="window-content">
+            <section class="content-section">
+              <h1 class="section-title teal-bg">Projek Saya</h1>
+              <p>
+                Beberapa proyek yang pernah saya kerjakan, baik untuk kebutuhan
+                sekolah, instansi, maupun project pribadi.
+              </p>
+            </section>
+
+            <section class="content-section">
+              <div class="projects-grid">
+                <div class="project-card">
+                  <img
+                    src="./projects/pmb_idn.png"
+                    alt="PMB IDN"
+                    class="project-image"
+                  />
+                  <h3>PMB IDN</h3>
+                  <p>
+                    Web Sistem untuk Penerimaan Mahasiswa Baru Politeknik IDN
+                    Bogor. Dibangun dengan <b>Laravel</b> & <b>Tailwind CSS</b>.
+                  </p>
+                </div>
+
+                <div class="project-card">
+                  <img
+                    class="project-image"
+                    src="./projects/e-employee.PNG"
+                    alt="E-Employee IDN"
+                  />
+                  <h3>E-Employee IDN</h3>
+                  <p>
+                    Sistem informasi untuk mengelola data karyawan IDN Boarding
+                    School. Menggunakan <b>Livewire</b> & <b>Alpine.js</b>.
+                  </p>
+                </div>
+
+                <div class="project-card">
+                  <img
+                    class="project-image"
+                    src="./projects/pos-system.png"
+                    alt="POS System"
+                  />
+                  <h3>POS System</h3>
+                  <p>
+                    Aplikasi Point of Sales untuk UMKM, dilengkapi fitur kasir,
+                    laporan penjualan, dan stok barang.
+                  </p>
+                </div>
+
+                <div class="project-card">
+                  <img
+                    class="project-image"
+                    src="./projects/portfolio.png"
+                    alt="Portfolio Retro"
+                  />
+                  <h3>Retro Portfolio</h3>
+                  <p>
+                    Website portofolio pribadi dengan desain <i>retro-modern</i>
+                    unik, seperti yang sedang kamu lihat sekarang 😉.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Aktifkan navigasi
+      document.querySelectorAll(".nav-menu li").forEach((item) => {
+        item.addEventListener("click", function () {
+          document.querySelectorAll(".nav-menu li").forEach((i) => {
+            i.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

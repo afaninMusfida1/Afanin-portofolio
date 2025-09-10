@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Retro Website</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Navbar -->
+      <header class="navbar">
+        <div class="browser-bar">
+          <div class="browser-controls">
+            <div class="control yellow"></div>
+            <div class="control green"></div>
+            <div class="control red"></div>
+          </div>
+          <div class="address-bar">
+            <span>www.numenportofolio.com/about</span>
+          </div>
+          <div class="window-controls">
+            <button class="window-btn">_</button>
+            <button class="window-btn">□</button>
+            <button class="window-btn">×</button>
+          </div>
+        </div>
+
+        <nav class="nav-menu">
+          <ul>
+            <li>
+              <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li class="active">
+              <a href="#about">
+                <i class="fas fa-user"></i>
+                <span>About</span>
+              </a>
+            </li>
+            <li>
+              <a href="projects.html">
+                <i class="fas fa-folder"></i>
+                <span>Projects</span>
+              </a>
+            </li>
+            <li>
+              <a href="contact.html">
+                <i class="fas fa-envelope"></i>
+                <span>Contact</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Konten About -->
+      <main class="content">
+        <div class="window">
+          <div class="card-header">
+            <div class="browser-controls">
+              <div class="control yellow"></div>
+              <div class="control green"></div>
+              <div class="control red"></div>
+            </div>
+            <div class="card-title">About Me</div>
+            <div class="window-controls">
+              <button class="window-btn">×</button>
+            </div>
+          </div>
+
+          <div class="window-content">
+            <section class="content-section">
+              <h1 class="section-title teal-bg">Halo, Saya Nu'man!</h1>
+              <p>
+                Saya adalah seorang <b>Fullstack Developer</b> yang suka
+                menggabungkan teknologi modern dengan nuansa retro. Dengan
+                pengalaman di <b>Laravel, Tailwind, Alpine.js</b>, dan
+                <b>MySQL</b>, saya membangun aplikasi web yang interaktif,
+                efisien, dan tentunya menyenangkan untuk digunakan.
+              </p>
+            </section>
+
+            <section class="content-section">
+              <h2 class="section-title yellow-bg">Perjalanan</h2>
+              <p>
+                Awalnya saya tertarik dengan dunia programming sejak remaja.
+                Dari membuat project kecil sampai mengerjakan sistem untuk
+                sekolah dan instansi. Saya percaya bahwa teknologi bisa menjadi
+                alat untuk mempermudah hidup manusia, asalkan dikemas dengan
+                cara yang kreatif dan bermanfaat.
+              </p>
+            </section>
+
+            <section class="content-section">
+              <h2 class="section-title pink-bg">Visi & Misi</h2>
+              <ul class="skill-list">
+                <li><div class="bullet"></div> Belajar & berkembang setiap hari</li>
+                <li><div class="bullet"></div> Membangun aplikasi yang bermanfaat</li>
+                <li><div class="bullet"></div> Membagikan ilmu ke orang lain</li>
+                <li><div class="bullet"></div> Menggabungkan desain & teknologi</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      // Aktifkan navigasi
+      document.querySelectorAll(".nav-menu li").forEach((item) => {
+        item.addEventListener("click", function () {
+          document.querySelectorAll(".nav-menu li").forEach((i) => {
+            i.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
